@@ -17,15 +17,25 @@ class MinHeap
   # Time Complexity: ?
   # Space Complexity: ?
   def add(key, value = key)
-    raise NotImplementedError, "Method not implemented yet..."
+    new_element = HeapNode.new(key, value)
+    next_index = @store.length 
+    @store[next_index] = new_element
+
   end
 
   # This method removes and returns an element from the heap
-  #   maintaining the heap structure
+  # maintaining the heap structure
   # Time Complexity: ?
   # Space Complexity: ?
   def remove()
-    raise NotImplementedError, "Method not implemented yet..."
+    return if @store.empty?
+
+    last_index = @store.length -1
+    temp = @store[last_index]
+    @store.delete_at(last_index)
+
+    return temp
+
   end
 
 
@@ -47,7 +57,7 @@ class MinHeap
   # Time complexity: ?
   # Space complexity: ?
   def empty?
-    raise NotImplementedError, "Method not implemented yet..."
+    return @store.length == 0
   end
 
   private
@@ -58,14 +68,43 @@ class MinHeap
   # Time complexity: ?
   # Space complexity: ?
   def heap_up(index)
-    
+    return if index == 0  # if index is 0 it means its a parent so no need to perform heap up
+
+    if index % 2 == 0 # if index is even number it means its a right chile as right_child = 2*(i) + 2 <-- and this is always even number
+      parent_index = (index - 2) / 2
+    else
+      parent_index = (index - 1) / 2
+    end
+
+    if @store[index] < @store[parent_index]
+      swap(index, parent_index)
+      heap_up(parent_index)
+    else
+      return
+    end
+
   end
 
   # This helper method takes an index and 
   #  moves it up the heap if it's smaller
   #  than it's parent node.
   def heap_down(index)
-    raise NotImplementedError, "Method not implemented yet..."
+    return if @store.empty?
+    last_index = @store.length -1
+    return if index == last_index # if index is the last one, we have reached the right most node
+  
+    
+    right_child_idx = (2 * index) + 2
+    left_child_idx = (2 * index) + 1
+
+    if left_child_idx == last_index
+      swap(left_child_idx, index)
+    else
+      swap(right_child_idx, index)
+    end
+
+    heap_down(right_child_idx)
+
   end
 
   # If you want a swap method... you're welcome
