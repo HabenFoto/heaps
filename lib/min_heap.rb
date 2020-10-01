@@ -32,11 +32,11 @@ class MinHeap
     return if @store.empty?
     heap_down(0) # 0 would be the root
 
-    last_index = @store.length -1
+    last_index = @store.length - 1
     temp = @store[last_index]
     @store.delete_at(last_index)
 
-    return temp
+    return temp.value
  
   end
 
@@ -92,7 +92,7 @@ class MinHeap
   #  than it's parent node.
   def heap_down(index)
     return if @store.empty?
-    last_index = @store.length -1
+    last_index = @store.length - 1
     return if index == last_index # if index is the last one, we have reached the right most node
   
     
