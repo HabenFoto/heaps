@@ -35,7 +35,7 @@ class MinHeap
     @store.delete_at(last_index)
 
     return temp
-
+ 
   end
 
 
@@ -76,7 +76,7 @@ class MinHeap
       parent_index = (index - 1) / 2
     end
 
-    if @store[index] < @store[parent_index]
+    if @store[index].key < @store[parent_index].key
       swap(index, parent_index)
       heap_up(parent_index)
     else
