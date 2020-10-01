@@ -101,11 +101,11 @@ class MinHeap
 
     if left_child_idx == last_index
       swap(left_child_idx, index)
+      heap_down(left_child_idx)
     else
       swap(right_child_idx, index)
+      heap_down(right_child_idx)
     end
-
-    heap_down(right_child_idx)
 
   end
 
