@@ -101,11 +101,14 @@ class MinHeap
     right_child_idx = (2 * index) + 2
     left_child_idx = (2 * index) + 1
 
-    if @store[index].key > @store[right_child_idx]
+    return if right_child_idx > last_index 
+    return if left_child_idx > last_index
+
+    if @store[index].key > @store[right_child_idx].key
       swap(right_child_idx, index) # swap only when value is greater than child
       heap_down(right_child_idx)
     elsif
-      @store[index].key > @store[left_child_idx]
+      @store[index].key > @store[left_child_idx].key
       swap(left_child_idx, index)
       heap_down(left_child_idx)
     else
