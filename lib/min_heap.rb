@@ -20,6 +20,7 @@ class MinHeap
     new_element = HeapNode.new(key, value)
     next_index = @store.length 
     @store[next_index] = new_element
+    heap_up(next_index)
 
   end
 
