@@ -30,11 +30,13 @@ class MinHeap
   # Space Complexity: ?
   def remove()
     return if @store.empty?
-    heap_down(0) # 0 would be the root
-
+   
     last_index = @store.length - 1
+    swap(0, last_index)
+
     temp = @store[last_index]
     @store.delete_at(last_index)
+    heap_down(0)
 
     return temp.value
  
