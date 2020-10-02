@@ -64,6 +64,16 @@ class MinHeap
     return @store.length == 0
   end
 
+ # helper method for heapsort
+  def to_array
+    output = []
+    (@store.length).times do |index|
+      output << @store[index].value
+    end
+    return output
+
+  end
+
   private
 
   # This helper method takes an index and
