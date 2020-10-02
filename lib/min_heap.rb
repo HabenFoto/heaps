@@ -114,15 +114,28 @@ class MinHeap
     return if right_child_idx > last_index
     return if left_child_idx > last_index
 
-    if @store[index].key > @store[right_child_idx].key && @store[right_child_idx].key < @store[left_child_idx].key
-      swap(right_child_idx, index) # swap only when value is greater than child
-      heap_down(right_child_idx)
-    elsif @store[index].key > @store[left_child_idx].key
-      swap(left_child_idx, index)
-      heap_down(left_child_idx)
+    if @store[index].key > @store[right_child_idx].key || @store[index].key > @store[left_child_idx].key
+      if @store[right_child_idx].key < @store[left_child_idx].key
+        swap(right_child_idx, index) # swap only when value is greater than child
+        heap_down(right_child_idx)
+      else
+        swap(left_child_idx, index) # swap only when value is greater than child
+        heap_down(left_child_idx)
+      end
     else
       return
     end
+
+
+    ##if @store[index].key > @store[right_child_idx].key && @store[right_child_idx].key < @store[left_child_idx].key
+    ##  swap(right_child_idx, index) # swap only when value is greater than child
+    ##  heap_down(right_child_idx)
+    ## elsif @store[index].key > @store[left_child_idx].key
+    ##  swap(left_child_idx, index)
+    ##  heap_down(left_child_idx)
+    ##else
+    ##  return
+    ##end
 
   end
 
