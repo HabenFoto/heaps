@@ -10,6 +10,10 @@ def heapsort(list)
   list.each  do |num|
     heap.add(num)
   end
-  return heap.to_array
+  result = []
+  until heap.empty?
+    result << heap.remove
+  end
+  return result
 
 end
