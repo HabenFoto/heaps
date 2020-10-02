@@ -14,8 +14,8 @@ class MinHeap
   end
 
   # This method adds a HeapNode instance to the heap
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(log(n))
+  # Space Complexity: O(1)
   def add(key, value = key)
     new_element = HeapNode.new(key, value)
     next_index = @store.length
@@ -26,8 +26,8 @@ class MinHeap
 
   # This method removes and returns an element from the heap
   # maintaining the heap structure
-  # Time Complexity: ?
-  # Space Complexity: ?
+  # Time Complexity: O(log(n))
+  # Space Complexity: O(1)
   def remove()
     return if @store.empty?
 
@@ -58,29 +58,21 @@ class MinHeap
   end
 
   # This method returns true if the heap is empty
-  # Time complexity: ?
-  # Space complexity: ?
+  # Time complexity: O(1)
+  # Space complexity: O(1)
   def empty?
     return @store.length == 0
   end
 
- # helper method for heapsort
-  def to_array
-    output = []
-    (@store.length).times do |index|
-      output << @store[index].value
-    end
-    return output
 
-  end
 
   private
 
   # This helper method takes an index and
   #  moves it up the heap, if it is less than it's parent node.
   #  It could be **very** helpful for the add method.
-  # Time complexity: ?
-  # Space complexity: ?
+  # Time complexity: O(log(n))
+  # Space complexity: O(1)
   def heap_up(index)
     return if index == 0  # if index is 0 it means its a parent so no need to perform heap up
 
@@ -102,6 +94,8 @@ class MinHeap
   # This helper method takes an index and
   #  moves it up the heap if it's smaller
   #  than it's parent node.
+  # Time complexity: O(log(n))
+  # Space complexity: O(1)
   def heap_down(index)
     return if @store.empty?
     last_index = @store.length - 1
@@ -112,7 +106,7 @@ class MinHeap
 
     return if left_child_idx > last_index #  if we reach the end of/edge of the tree return
 
-    # if the current parent is greater than either of the child nodes then find the smallest of the two childs and swap it with the parent
+    # only swap when current parent is greater than either of the child nodes then find the smallest of the two dscendants
     # only check the reight child if the right_child_index is less than the max valid index of the array.
     if (right_child_idx <= last_index && @store[index].key > @store[right_child_idx].key) || @store[index].key > @store[left_child_idx].key
       if (right_child_idx <= last_index &&  @store[right_child_idx].key < @store[left_child_idx].key)
