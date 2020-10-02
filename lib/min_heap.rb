@@ -107,15 +107,13 @@ class MinHeap
     last_index = @store.length - 1
     return if index == last_index # if index is the last one, we have reached the right most node
 
-
     right_child_idx = (2 * index) + 2
     left_child_idx = (2 * index) + 1
 
-    ##return if right_child_idx > last_index
-    return if left_child_idx > last_index
+    return if left_child_idx > last_index #  if we reach the end of/edge of the tree return
 
-    if right_child_idx > last_index
-
+    # if the current parent is greater than either of the child nodes then find the smallest of the two childs and swap it with the parent
+    # only check the reight child if the right_child_index is less than the max valid index of the array.
     if (right_child_idx <= last_index && @store[index].key > @store[right_child_idx].key) || @store[index].key > @store[left_child_idx].key
       if (right_child_idx <= last_index &&  @store[right_child_idx].key < @store[left_child_idx].key)
         swap(right_child_idx, index) # swap only when value is greater than child
@@ -127,17 +125,6 @@ class MinHeap
     else
       return
     end
-
-
-    ##if @store[index].key > @store[right_child_idx].key && @store[right_child_idx].key < @store[left_child_idx].key
-    ##  swap(right_child_idx, index) # swap only when value is greater than child
-    ##  heap_down(right_child_idx)
-    ## elsif @store[index].key > @store[left_child_idx].key
-    ##  swap(left_child_idx, index)
-    ##  heap_down(left_child_idx)
-    ##else
-    ##  return
-    ##end
 
   end
 
