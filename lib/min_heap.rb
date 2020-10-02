@@ -18,7 +18,7 @@ class MinHeap
   # Space Complexity: ?
   def add(key, value = key)
     new_element = HeapNode.new(key, value)
-    next_index = @store.length 
+    next_index = @store.length
     @store[next_index] = new_element
     heap_up(next_index)
 
@@ -30,7 +30,7 @@ class MinHeap
   # Space Complexity: ?
   def remove()
     return if @store.empty?
-   
+
     last_index = @store.length - 1
     swap(0, last_index)
 
@@ -39,7 +39,7 @@ class MinHeap
     heap_down(0)
 
     return temp.value
- 
+
   end
 
 
@@ -53,7 +53,7 @@ class MinHeap
     end
 
     output += @store.last.value + "]"
-      
+
     return output
   end
 
@@ -89,26 +89,25 @@ class MinHeap
 
   end
 
-  # This helper method takes an index and 
+  # This helper method takes an index and
   #  moves it up the heap if it's smaller
   #  than it's parent node.
   def heap_down(index)
     return if @store.empty?
     last_index = @store.length - 1
     return if index == last_index # if index is the last one, we have reached the right most node
-  
-    
+
+
     right_child_idx = (2 * index) + 2
     left_child_idx = (2 * index) + 1
 
-    return if right_child_idx > last_index 
+    return if right_child_idx > last_index
     return if left_child_idx > last_index
 
-    if @store[index].key > @store[right_child_idx].key
+    if @store[index].key > @store[right_child_idx].key && @store[right_child_idx].key < @store[left_child_idx].key
       swap(right_child_idx, index) # swap only when value is greater than child
       heap_down(right_child_idx)
-    elsif
-      @store[index].key > @store[left_child_idx].key
+    elsif @store[index].key > @store[left_child_idx].key
       swap(left_child_idx, index)
       heap_down(left_child_idx)
     else
